@@ -1,29 +1,47 @@
 <?php
 session_start();
 include 'cnx.php';
+$email = "";
+$Error= "";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-if(isset($_POST['send'])){
-    $password_hash = password_hash($_POST['Password'], PASSWORD_BCRYPT);
-    $INSERT = $cnx->prepare("INSERT INTO utlisateur (`nom`, `prenom`, `email`, `password`) VALUES (?, ?, ?, ?)");
-    // $INSERT->bind_param("ssss", $nom, $prenom, $email, $password_hash);
-    $INSERT->bind_param("ssss", $_POST['FirstName'], $_POST['LastName'], $_POST['Email'], $password_hash);
+$email = $_POST["Email"];
+$q = "SELECT * FROM utlisateur WHERE email = '$email'";
+$r = mysqli_query($cnx,$q);
 
-    
-    $success = $INSERT->execute();
-
-    if ($success) {
-        $_SESSION['user_email'] = $_POST['Email'];
-        header('Location: role.php');
-        exit;
-    } else {
+if($r->num_rows == 0) {
    
-        error_log('Échec : ' . $cnx->error);
+        $password_hash = password_hash($_POST['Password'], PASSWORD_BCRYPT);
+        $INSERT = $cnx->prepare("INSERT INTO utlisateur (`nom`, `prenom`, `email`, `password`) VALUES (?, ?, ?, ?)");
+        // $INSERT->bind_param("ssss", $nom, $prenom, $email, $password_hash);
+        $INSERT->bind_param("ssss", $_POST['FirstName'], $_POST['LastName'], $_POST['Email'], $password_hash);
+    
         
-    }
-
-    // Fermez la requête préparée
-    $INSERT->close();
+    
+        $success = $INSERT->execute();
+    
+        if ($success) {
+            $_SESSION['user_email'] = $_POST['Email'];
+             header('Location: role.php');
+            exit();
+        } else {
+       
+            error_log('Échec : ' . $cnx->error);
+            
+        }
+    
+        // Fermez la requête préparée
+        $INSERT->close();
+    
+    
 }
+else {
+   $Error= "* Deja Fait Creer ";
+}
+}
+
+
+
 
 ?>
 
@@ -55,13 +73,14 @@ if(isset($_POST['send'])){
         <input type="text" id="LastName" class="form-control" placeholder="Last name" name="LastName" required>
     </div>
 </div>
-<div class="d-flex gap-2">
+<div></div>
+<div class="d-flex gap-2  mb-2">
 <ion-icon name="mail-outline" class="fs-2"></ion-icon>
-<input type="email" id="Email" class="form-control mb-4 ms-1" placeholder="E-mail" name="Email" required>
+<input type="email" id="Email" class="form-control ms-1" placeholder="E-mail" name="Email" required>
 </div>
-
-
-<div class="d-flex gap-2">
+<span class="text-danger"><?php echo $Error ?></span>
+</div>
+<div class="d-flex gap-2 mt-4">
 <ion-icon name="lock-closed-outline" class="fs-2"></ion-icon>
 <input type="password" id="Password" class="form-control ms-1" placeholder="Password" name="Password" required>
 </div>
@@ -70,7 +89,7 @@ if(isset($_POST['send'])){
 <button class="btn btn-info w-75 my-3 btn-block ms-5  fs-4 fw-bold" type="submit" name="send" >Sign in</button>
 
 <p>
-        <a href="" target="">Already planning to create?</a>
+        <a href="login.php" target="">Already planning to create?</a>
     </p>
 </form>
 </section>

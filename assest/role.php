@@ -1,45 +1,51 @@
 <?php
-session_start(); // Start the session
+session_start(); 
 include 'cnx.php';
 
-// Initialize $user_email variable
-$user_email = '';
 
+$user_email = '';
+$msg='';
 if (isset($_SESSION['user_email'])) {
     $user_email = $_SESSION['user_email'];
-    echo $user_email;
+    // echo $user_email;
     if (isset($_POST['admin'])) {
      
         $update = $cnx->prepare("UPDATE  utlisateur SET idRole= '1' WHERE email = ?");
-       
+        if ($update) {
+            $update->bind_param("s", $user_email);
+            $success = $update->execute();
+    
+            if ($success) {
+                $msg= "Role Admin successfully!";
+            } else {
+                $msg= "Error admin role!";
+            }
+            $update->close();
+           
+        }
       
     } 
     if(isset($_POST['client'])) {
         $update = $cnx->prepare("UPDATE utlisateur SET idRole = '2' WHERE email = ?");
-       
-    }
-    if ($update) {
-        $update->bind_param("s", $user_email);
-        $success = $update->execute();
-
-        if ($success) {
-            echo "Role updated successfully!";
-        } else {
-            echo "Error updating role!";
+        if ($update) {
+            $update->bind_param("s", $user_email);
+            $success = $update->execute();
+    
+            if ($success) {
+                $msg= "Role client successfully!";
+            } else {
+                $msg="Error client role!";
+            }
+            $update->close();
+           
         }
-        $update->close();
-       
-    }
-
-    
-
-       
-    
-   
+    }  
+}
+if(isset($_POST['login'])){
+    header('Location: login.php');
+    exit();
 }
 
-// header('Location: login.php');
-// exit;
 ?>
 
 
@@ -55,13 +61,18 @@ if (isset($_SESSION['user_email'])) {
 </head>
 <body>
 <form action="role.php" method="POST" class="p-4 w-75 mx-auto  border border-info" style="margin: 12% 0;">
-<div class=" w-50 py-4 mx-auto">
-    <h2 class="fs-3 text-center pb-4">Choix Pour User :  </h2>
+<h2 class="fs-3 text-center pb-4">Choix Pour User :  </h2>
+<ion-icon class="fs-1  "  name="person-outline" style="margin-left: 48%;"></ion-icon>
+<div class=" w-50 py-3 mx-auto d-flex gap-2 ">
 <button class="btn btn-info w-100 mt-2 btn-block fs-4 fw-bold" type="submit" name="admin" >Admin</button>
-
 <button class="btn btn-info w-100 mt-2 btn-block fs-4 fw-bold" type="submit" name="client" >Client</button>
+</div>
+<div class="d-flex flex-column   justify-content-center">
+<span class="text-success text-center  w-50 mx-auto fs-2"><?php echo $msg ?></span>
+<button class="btn btn-info w-50 mt-2  btn-block fs-4 fw-bold" type="submit" name="login" style="margin-left: 25%;" >Login</button>
 
 </div>
+
 </form>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
