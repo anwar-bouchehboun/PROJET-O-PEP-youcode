@@ -70,7 +70,6 @@ if(isset($_POST['login'])){
 <div class="d-flex flex-column   justify-content-center">
 <span class="text-success text-center  w-50 mx-auto fs-2"><?php echo $msg ?></span>
 <button class="btn btn-info w-50 mt-2  btn-block fs-4 fw-bold" type="submit" name="login" style="margin-left: 25%;" >Login</button>
-
 </div>
 
 </form>
