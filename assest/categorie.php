@@ -28,8 +28,18 @@ include "./sidbar.php";
                               <td ><?php echo $row['id_cat']; ?></td>
                               <td><?php echo $row['nomcat']; ?></td>
                               <td class="d-flex gap-2">
-                                  <button class="w-50 btn text-white btn-block btn-info" type="submit"><ion-icon name="download-outline"></ion-icon></button>
-                                  <button class="w-50 btn text-white btn-block btn-info" type="submit"><ion-icon name="trash-outline"></ion-icon></button>
+                              <button class="w-50 btn text-white btn-block btn-info">
+                                 <a href="./crud/update.php?update=<?php echo $row['id_cat']; ?>">
+                                   <ion-icon name="download-outline"></ion-icon>
+                                     </a>
+                                  </button>
+
+                                    <button class="w-50 btn text-white btn-block btn-info">
+                                    <a href="./crud/delete.php?delete=<?php echo $row['id_cat']; ?>">
+                                        <ion-icon name="trash-outline"></ion-icon>
+                                    </a>
+                                    </button>
+
                           </td>
                               
                           </tr>
