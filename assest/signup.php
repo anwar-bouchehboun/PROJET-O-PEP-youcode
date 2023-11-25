@@ -25,7 +25,8 @@ if($r->num_rows == 0) {
              header('Location: role.php');
             exit();
         } else {
-       
+            header('Location: signup.php');
+            exit();
             error_log('Échec : ' . $cnx->error);
             
         }

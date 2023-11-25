@@ -30,13 +30,13 @@ include "./sidbar.php";
                               <td class="d-flex gap-2">
                               <button class="w-50 btn text-white btn-block btn-info">
                                  <a href="./update.php?update=<?php echo $row['id_cat']; ?>">
-                                   <ion-icon name="download-outline"></ion-icon>
+                                   <ion-icon name="download-outline" class="text-white"></ion-icon>
                                      </a>
                                   </button>
 
-                                    <button class="w-50 btn text-white btn-block btn-info">
+                                    <button class="w-50 btn text-white btn-block btn-danger">
                                     <a href="./delete.php?delete=<?php echo $row['id_cat']; ?>">
-                                        <ion-icon name="trash-outline"></ion-icon>
+                                        <ion-icon name="trash-outline" class="text-white"></ion-icon>
                                     </a>
                                     </button>
 

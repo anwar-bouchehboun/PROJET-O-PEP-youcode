@@ -17,7 +17,7 @@ if (isset($_POST['send'])) {
 }
 ?>
 <div class="w-50 container border-success border mt-5">
-<form class="text-center   w-100  p-5" action="" method="post">
+<form class="text-center   w-100  p-5" action="categorie.php" method="post">
     <p class="h4 mb-4">Catégorie </p>
     <p class="fs-3">ID Categorie : <?php  echo $id ?></p>
     <!-- Name cat -->

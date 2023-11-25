@@ -4,7 +4,7 @@ include 'cnx.php';
 $email = "";
 $password = "";
 // $Error= "";
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (isset($_POST['signin'])) {
 
 $email = $_POST["email"];
 $password=$_POST['password'];
@@ -35,7 +35,8 @@ if($result->num_rows > 0 ) {
     
 }
 else if($result->num_rows==0) {
-    echo 'ERROR';
+    header('location: login.php');
+    exit;
 
 }
 
@@ -67,7 +68,7 @@ else if($result->num_rows==0) {
     <input type="password" id="defaultSubscriptionFormEmail" class="form-control mb-4" name="password" placeholder="Password" required>
 
     <!-- Sign in button -->
-    <button class="btn btn-info w-75 mb-3 btn-block" type="submit">Sign in</button>
+    <button class="btn btn-info w-75 mb-3 btn-block" name="signin" type="submit">Sign in</button>
     <p>
         <a href="signup.php">SIGN UP?</a>
     </p>

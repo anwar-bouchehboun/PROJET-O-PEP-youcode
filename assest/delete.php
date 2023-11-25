@@ -21,4 +21,15 @@ if(isset($_GET['dellet'])){
          exit;
     }else echo 'no success';
 }
+if(isset($_GET['delletcommand'])){
+    $id=$_GET['delletcommand'];
+    $delete="DELETE FROM `commande` WHERE idcommande=$id ";
+    $res=mysqli_query($cnx,$delete);
+    if($res){
+         echo ' success';
+         header("location: ./commande.php");
+         exit;
+    }else echo 'no success';
+}
+
 ?>

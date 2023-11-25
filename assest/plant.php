@@ -34,10 +34,10 @@ include "./sidbar.php";
                               <td class="d-flex gap-2 ">
                                   <button class="w-100  btn text-white btn-block btn-info" type="submit">  
                                     <a href="./updatePlante.php?updatee=<?php echo $row['idplante']; ?>">
-                                 <ion-icon name="download-outline"></ion-icon></button>
-                                  <button class="w-100 btn text-white btn-block btn-info" type="submit"> 
+                                 <ion-icon name="download-outline" class="text-white"></ion-icon></button>
+                                  <button class="w-100 btn text-white btn-block btn-danger" type="submit"> 
                                      <a href="./delete.php?dellet=<?php echo $row['idplante']; ?>">
-                                     <ion-icon name="trash-outline"></ion-icon></button>
+                                     <ion-icon name="trash-outline" class="text-white"></ion-icon></button>
                           </td>
                               
                           </tr>

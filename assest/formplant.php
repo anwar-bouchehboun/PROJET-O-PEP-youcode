@@ -18,7 +18,7 @@ $res=mysqli_query($cnx,$req);
                         <option value="<?php echo $row[0] ?>"><?php echo $row[1] ?></option>
 <?php }?>
                 </select></p> 
-<input class="btn btn-success w-75 mb-3 btn-block" name="submit" type="submit"></input>
+<input class="btn btn-success w-75 mb-3 btn-block" name="submit" type="submit" value="Ajouter"></input>
 
 
 </form>

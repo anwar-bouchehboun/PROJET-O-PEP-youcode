@@ -40,6 +40,9 @@ if (isset($_SESSION['user_email'])) {
            
         }
     }  
+}else{
+    header('location:signup.php');
+    exit;
 }
 if(isset($_POST['login'])){
     header('Location: login.php');
