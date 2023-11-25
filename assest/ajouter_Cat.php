@@ -6,7 +6,7 @@ $msg = "";
 if (isset($_POST['cat'])) {
     $cat = $_POST['cat'];
 
-    // Use prepared statement to prevent SQL injection
+    //  SQL injection
     $q = "SELECT * FROM `catégorie` WHERE nomcat = ?";
     $stmt = $cnx->prepare($q);
     $stmt->bind_param("s", $cat);
@@ -14,13 +14,14 @@ if (isset($_POST['cat'])) {
     $r = $stmt->get_result();
 
     if ($r->num_rows == 0) {
-        // Use prepared statement for insertion
+        // insertion
         $INSERT = $cnx->prepare("INSERT INTO `catégorie` (nomcat) VALUES (?)");
         $INSERT->bind_param("s", $cat);
         $success = $INSERT->execute();
 
         if ($success) {
-            $msg = 'BIEN FAIT';
+            header('location:categorie.php');
+            exit;
           
         } else {
             $msg = 'Erreur lors de l\'ajout à la base de données.';

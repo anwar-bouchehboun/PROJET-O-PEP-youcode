@@ -22,7 +22,7 @@ if($result->num_rows > 0 ) {
                 if ($data["idRole"] == 1) {
                     $_SESSION['prenom_admin']=$data['prenom'];
                     $_SESSION['nom']=$data['nom'];
-                    header("location: dashbord.php");
+                    header("location: addCat.php");
                     exit;
                   }else{
                     header("location: client.php");

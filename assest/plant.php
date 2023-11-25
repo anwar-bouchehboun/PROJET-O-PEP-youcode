@@ -1,7 +1,8 @@
 <?php
 include 'cnx.php';
 include "./sidbar.php";
-    $sql = "SELECT * FROM `plantes`";
+    $sql = "SELECT p.*,c.nomcat as categorie FROM plantes p,catégorie c
+    where p.idcat=c.id_cat";
     $req = mysqli_query($cnx, $sql);
 ?>
 <div class=" ">
@@ -16,6 +17,7 @@ include "./sidbar.php";
                   <th class="">PLANTE</th>
                   <th class="">IMAGE</th>
                   <th class="">PRIX</th>
+                  <th class="">categorie</th>
                   <th class="" style="width: 12%;">#</th>
                   </tr>
                   </thead>
@@ -26,11 +28,16 @@ include "./sidbar.php";
                           <tr class="table-info">
                               <td ><?php echo $row['idplante']; ?></td>
                               <td><?php echo $row['nomplante']; ?></td>
-                              <td style="width: 10%;"><img src="<?php echo $row['image']; ?>" class="w-50" alt="product"></td>
+                              <td style="width: 10%;"><img src="../img/<?= $row['image'] ?>" class="w-50" alt="product"></td>
                               <td><?php echo $row['prix']; ?></td>
+                              <td><?php echo $row['categorie']; ?></td>
                               <td class="d-flex gap-2 ">
-                                  <button class="w-100  btn text-white btn-block btn-info" type="submit"><ion-icon name="download-outline"></ion-icon></button>
-                                  <button class="w-100 btn text-white btn-block btn-info" type="submit"><ion-icon name="trash-outline"></ion-icon></button>
+                                  <button class="w-100  btn text-white btn-block btn-info" type="submit">  
+                                    <a href="./updatePlante.php?updatee=<?php echo $row['idplante']; ?>">
+                                 <ion-icon name="download-outline"></ion-icon></button>
+                                  <button class="w-100 btn text-white btn-block btn-info" type="submit"> 
+                                     <a href="./delete.php?dellet=<?php echo $row['idplante']; ?>">
+                                     <ion-icon name="trash-outline"></ion-icon></button>
                           </td>
                               
                           </tr>
