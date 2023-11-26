@@ -7,9 +7,6 @@ $result=mysqli_query($cnx,$req);
 
 if ($result) {
   
-      
-    
- 
 
 ?>
 <div class=" w-100 ">
@@ -49,9 +46,63 @@ if ($result) {
   </table>
   <?php } ?>
 </div>
-<h3 class="text-success fs-4">Nomber de command : </h3>
+<?php
+$countcommande = 0; 
 
+$countreq = "SELECT count(*) FROM `commande`";
+$count = mysqli_query($cnx, $countreq);
 
+if ($count) {
+    $row = mysqli_fetch_array($count);
+    $countcommande = $row[0];
+}
+$count_client=0;
+$countclientreq = "SELECT count(*) FROM `utlisateur` where idRole=2";
+$countclient=mysqli_query($cnx,$countclientreq);
+if($countclientreq){
+  $rows = mysqli_fetch_array($countclient);
+  $count_client = $rows[0];
+}
+?>
+<div class="row container w-100">
+   <h2 class="text-success">Statistique De Commande </h2>
+      <!-- Earnings (Monthly) Card Example -->
+      <div class="col-xl-5 col-md-6 mb-4 ms-5">
+            <div class="card border-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Nomber de command</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $countcommande; ?> </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings (Annual) Card Example -->
+        <div class="col-xl-5 col-md-6 mb-4 ms-5">
+            <div class="card border-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                Nombre compte client</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $count_client; ?></div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</div>
 
 </div>
 <?php include './footer.php' ?>
