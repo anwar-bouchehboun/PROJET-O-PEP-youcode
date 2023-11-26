@@ -1,6 +1,7 @@
 <?php
 include 'cnx.php';
 include "./sidbar.php";
+
     $sql = "SELECT p.*,c.nomcat as categorie FROM plantes p,catégorie c
     where p.idcat=c.id_cat";
     $req = mysqli_query($cnx, $sql);
@@ -18,7 +19,7 @@ include "./sidbar.php";
                   <th class="">IMAGE</th>
                   <th class="">PRIX</th>
                   <th class="">categorie</th>
-                  <th class="" style="width: 12%;">#</th>
+                  <th class="" style="width: 12%;">ACTION</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -28,7 +29,7 @@ include "./sidbar.php";
                           <tr class="table-info">
                               <td ><?php echo $row['idplante']; ?></td>
                               <td><?php echo $row['nomplante']; ?></td>
-                              <td style="width: 10%;"><img src="../img/<?= $row['image'] ?>" class="w-50" alt="product"></td>
+                              <td style="width: 10%;"><img src="../img/<?= $row['image'] ?>" class="w-50 h-25" alt="product"></td>
                               <td><?php echo $row['prix']; ?></td>
                               <td><?php echo $row['categorie']; ?></td>
                               <td class="d-flex gap-2 ">

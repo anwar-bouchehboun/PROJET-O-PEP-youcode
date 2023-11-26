@@ -25,8 +25,11 @@ if($result->num_rows > 0 ) {
                     header("location: addCat.php");
                     exit;
                   }else{
+                    $_SESSION['idclient'] = $data['id_utlisateur'];
+                    $_SESSION['prenom_client'] = $data['prenom'];
+                    $_SESSION['nomclient'] = $data['nom'];
                     header("location: client.php");
-                    exit;
+                    exit();
                   }
             }
           }

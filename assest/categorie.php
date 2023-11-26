@@ -16,7 +16,7 @@ include "./sidbar.php";
                   <tr>
                   <th class="" style="width: 10%;">ID</th>
                   <th class="">Categorie</th>
-                  <th class="w-25">#</th>
+                  <th class="w-25">ACTION</th>
                   
                   </tr>
                   </thead>
