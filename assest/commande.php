@@ -1,8 +1,7 @@
 <?php
 include "./sidbar.php";
 include './cnx.php';
-$req="SELECT c.*,u.nom as nomulisateur,u.prenom as prenom,u.email as email,r.Role as Role FROM commande c ,panier p ,utlisateur u ,role r
-where c.idpanier=p.idpanier and p.idutili=u.id_utlisateur and r.idRole=u.idRole ";
+$req="SELECT c.*, p.nomplante as Produit,p.prix as PRIX, c.date as DATE,u.nom as NOM,u.prenom as Prenom,r.Role as Role from commande c,plantes p ,utlisateur u, role r where c.idutli=u.id_utlisateur and r.idRole=u.idRole and p.idplante=c.idplant ";
 $result=mysqli_query($cnx,$req);
 
 if ($result) {
@@ -15,12 +14,11 @@ if ($result) {
 <table class="table text-center table-hover table-bordered ">
     <thead class="w-100">
       <tr>
-        <th class="">ID_COMMANDE</th>
+        <th class="">Plante</th>
         <th class="w-25">DATE_commande</th>
-        <th>ID_PANIER</th>
+        <th>PRIX</th>
         <th>NOM</th>
         <th>PRENOM</th>
-        <th>EMAIL</th>
         <th>ROLE</th>
         <th class="" style="width: 10%;">#</th>
       </tr>
@@ -28,12 +26,11 @@ if ($result) {
     <tbody></tbody>
       <?php  while ($row = mysqli_fetch_assoc($result)) {?>
       <tr class="table-info">
-      <td><?= $row['idcommande'] ?></td>
-        <td><?= $row['date'] ?></td>
-        <td><?= $row['idpanier'] ?></td>
-        <td><?= $row['nomulisateur'] ?></td>
-        <td><?= $row['prenom'] ?></td>
-        <td><?= $row['email'] ?></td>
+      <td><?= $row['Produit'] ?></td>
+      <td><?= $row['PRIX'] ?></td>
+        <td><?= $row['DATE'] ?></td>
+        <td><?= $row['NOM'] ?></td>
+        <td><?= $row['Prenom'] ?></td>
         <td><?= $row['Role'] ?></td>
         <td>
         <button class="w-100 btn text-white btn-block btn-danger" type="submit"> 
@@ -63,10 +60,16 @@ if($countclientreq){
   $rows = mysqli_fetch_array($countclient);
   $count_client = $rows[0];
 }
+$sommecommande=0;
+$sumcommnd="SELECT SUM(plantes.prix) FROM commande,plantes where commande.idplant=plantes.idplante";
+$sumc=mysqli_query($cnx,$sumcommnd);
+if($sumc){
+    $rowsommcommnd=mysqli_fetch_array($sumc);
+    $sum_command=$rowsommcommnd[0];
+}
 ?>
 <div class="row container w-100">
    <h2 class="text-success">Statistique De Commande </h2>
-      <!-- Earnings (Monthly) Card Example -->
       <div class="col-xl-5 col-md-6 mb-4 ms-5">
             <div class="card border-primary shadow h-100 py-2">
                 <div class="card-body">
@@ -84,7 +87,7 @@ if($countclientreq){
             </div>
         </div>
 
-        <!-- Earnings (Annual) Card Example -->
+ 
         <div class="col-xl-5 col-md-6 mb-4 ms-5">
             <div class="card border-success shadow h-100 py-2">
                 <div class="card-body">
@@ -93,6 +96,22 @@ if($countclientreq){
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                 Nombre compte client</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $count_client; ?></div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-5 col-md-6 mb-4 ms-5">
+            <div class="card border-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                Somme De Commande</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $sum_command; ?></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

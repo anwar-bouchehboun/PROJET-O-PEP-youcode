@@ -52,7 +52,7 @@ $sum="select sum(plantes.prix) from panier,plantes where panier.idpalante=plante
     <style>
      .list {
         display: none;
-        overflow-y: auto; /* Add this line to enable vertical scrolling */
+        overflow-y: auto; 
     max-height: 400px;
  }
 
@@ -65,12 +65,13 @@ $sum="select sum(plantes.prix) from panier,plantes where panier.idpalante=plante
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar position-fixed top-0 w-100 navbar-expand-lg navbar-light bg-light">
         <div class="container px-4 px-lg-5">
             <a class="navbar-brand text-success" href="#!"><i class="bi bi-flower1"></i> O'PEP</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">  
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4"> 
+                    <li></li> 
                 </ul>
                 <?php 
                 $cnt=0;
@@ -99,11 +100,10 @@ $sum="select sum(plantes.prix) from panier,plantes where panier.idpalante=plante
  
   
      <form action="./client.php" method="post">
-     <div class="list position-fixed bg-white" style="height: 100vh; width: 21rem;z-index: 2000; margin-left: 76%;">
+     <div class="list position-fixed bg-white" style="height: 100vh; width: 21rem;z-index: 2000; margin-left: 76%;top:3.6rem">
         <i class="bi bi-x-circle-fill position-absolute fs-4 text-center" style="right: 3%;top: .5%;cursor: pointer;color:white;" id="X"></i>
         <div class="list-buttom">
           <p class="pricecounter text-center p-0 m-0 pt-2 pb-2 fw-bold bg-success text-center" style=" color: white;">Total :$<?php echo  $total ?> </p>
-          <button class="w-100 btn text-white btn-block btn-danger">commande</button>
       </div>
 
        <?php     
@@ -113,22 +113,27 @@ $sum="select sum(plantes.prix) from panier,plantes where panier.idpalante=plante
          while($rowws=mysqli_fetch_assoc($res)){
         
  ?>
-        <div class="col mb-2 mt-1 mx-auto "  style="width: 90%;">
-            <div class="card border-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                      <?php echo $rowws['nom'] ?></div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"> <img src="../img/<?php echo $rowws['logo']  ?>" class="w-25"> </div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300">$<?php echo $rowws['prix']  ?></i>
-                        </div>
+   <div class="col mb-2 mt-1 mx-auto" style="width: 90%;">
+    <div class="card border-primary shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                        <?php echo $rowws['nom'] ?>
+                    </div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        <img src="../img/<?php echo $rowws['logo'] ?>" class="w-25">
                     </div>
                 </div>
+                <div class="col-auto">
+                    <i class="fas fa-calendar fa-2x text-gray-300">$<?php echo $rowws['prix'] ?></i>
+                </div>
+                <a href="./commandeproduct.php?add=<?php echo $rowws['idpalante'];?>" class="w-50 row btn text-white btn-block mx-5 mt-1 btn-danger" name="commande">commande</a>
             </div>
         </div>
+    </div>
+</div>
+
         <?php    }
                 }
                 elseif (!$res) {

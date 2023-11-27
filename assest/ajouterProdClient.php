@@ -8,7 +8,8 @@ if(isset($_GET['id'])) {
    ('$idclient','$idplante')";
    $res=mysqli_query($cnx,$insert);
    if($res){
-    // echo ' success';
+  $_SESSION['idcl']=$idclient;
+  $_SESSION['idplant']=$idplante;
     header("location: ./client.php");
     exit;
 }else echo 'no success';
