@@ -226,6 +226,10 @@ $sum="select sum(plantes.prix) from panier,plantes where panier.idpalante=plante
     </div>
    
 </section>
+  <!-- Footer-->
+  <footer class="py-5 bg-success">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website O'PEP 2023</p></div>
+        </footer>
 <script>
  var cart = document.querySelector('#openCartButton');
 var list = document.querySelector('.list');

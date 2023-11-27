@@ -55,6 +55,14 @@ else {
     <!-- <link rel="stylesheet" href="style.css"> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>SIGN UP</title>
+    <style>
+          body{
+    background-image: url(../img/pexels-alina-vilchenko-1365772.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+    </style>
 </head>
 <body >
   <section class=" container  bg-white border border-primary p-2" style="width:40%;margin:100px auto">

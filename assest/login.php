@@ -57,9 +57,16 @@ else if($result->num_rows==0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOGIN</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+<style>
+  body{
+    background-image: url(../img/pexels-alina-vilchenko-1365772.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+</style>
 </head>
-<body>
+<body >
 <section  class=" container  bg-white border border-primary p-2" style="width:40%;margin:100px auto">
 <form class="text-center border container w-75 border-light p-5" action="login.php" method="post">
 
