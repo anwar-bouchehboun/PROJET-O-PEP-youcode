@@ -2,23 +2,24 @@
 include 'cnx.php';
 
 
-// $utli= $_SESSION['idcl']=$idclient;
-// $_SESSION['idplant']=$idplante;
 session_start();
+// $id = $_GET['add'];
+$plant_id=$_POST['plant_id'];
+$idpannier = $_POST['pannier_id'];
+if (isset($_POST['add'])) {
+    
 
-if (isset($_GET['add'])) {
     $idclient = $_SESSION['idclient'];
-    $id = $_GET['add'];
-
+   
+  
+ 
     date_default_timezone_set("Africa/Casablanca");
     $date = date("Y-m-d H:i:s");
-    $insert = "INSERT INTO `commande`(`date`, `idutli`, `idplant`) VALUES ( '$date' ,'$idclient' ,'$id')";
-    // $insert="INSERT INTO `panpla`(`idpanier`, `idplante`, `date`) VALUES ('[$id','[value-2]','$date')";
-    // "INSERT INTO `commande`( `date`, `id_panier`, `idutli`) VALUES ('[value-2]','[value-3]','[value-4]')";
+    $insert = "INSERT INTO `commande`(`date`, `idutli`, `idplant`) VALUES ( '$date' ,'$idclient' ,'$plant_id')";
     $req = mysqli_query($cnx, $insert);
     if ($req) {
         //  $update="update"
-        $delete = "DELETE FROM `panier` WHERE idpalante = $id";
+        $delete = "DELETE FROM `panier` WHERE idpanier = $idpannier";
         $sup = mysqli_query($cnx, $delete);
         echo $sup;
 
@@ -30,3 +31,5 @@ if (isset($_GET['add'])) {
         echo 'error';
     }
 }
+
+?>

@@ -65,7 +65,7 @@ $sum="select sum(plantes.prix) from panier,plantes where panier.idpalante=plante
 </head>
 <body>
 
-    <nav class="navbar position-fixed top-0 w-100 navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar position-fixed top-0 w-100 navbar-expand-lg navbar-light bg-light" style="z-index: 2000;">
         <div class="container px-4 px-lg-5">
             <a class="navbar-brand text-success" href="#!"><i class="bi bi-flower1"></i> O'PEP</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -99,7 +99,7 @@ $sum="select sum(plantes.prix) from panier,plantes where panier.idpalante=plante
      <!-- panier -->
  
   
-     <form action="./client.php" method="post">
+     <form action="./commandeproduct.php" method="post">
      <div class="list position-fixed bg-white" style="height: 100vh; width: 21rem;z-index: 2000; margin-left: 76%;top:3.6rem">
         <i class="bi bi-x-circle-fill position-absolute fs-4 text-center" style="right: 3%;top: .5%;cursor: pointer;color:white;" id="X"></i>
         <div class="list-buttom">
@@ -111,6 +111,7 @@ $sum="select sum(plantes.prix) from panier,plantes where panier.idpalante=plante
       $res=mysqli_query($cnx,$aff);
       if($res){
          while($rowws=mysqli_fetch_assoc($res)){
+           $product=$rowws['idpanier'];
         
  ?>
    <div class="col mb-2 mt-1 mx-auto" style="width: 90%;">
@@ -128,7 +129,9 @@ $sum="select sum(plantes.prix) from panier,plantes where panier.idpalante=plante
                 <div class="col-auto">
                     <i class="fas fa-calendar fa-2x text-gray-300">$<?php echo $rowws['prix'] ?></i>
                 </div>
-                <a href="./commandeproduct.php?add=<?php echo $rowws['idpalante'];?>" class="w-50 row btn text-white btn-block mx-5 mt-1 btn-danger" name="commande">commande</a>
+                <input type="hidden" name="pannier_id" value="<?php echo  $product ?>">
+               <input type="hidden" name="plant_id" value="<?php echo $rowws['idpalante'];?>" class="w-50 row btn text-white btn-block mx-5 mt-1 btn-danger" ></input> 
+                <input type="submit" value="Add to Cart" name="add"  class="w-50 row btn text-white btn-block mx-5 mt-1 btn-danger">
             </div>
         </div>
     </div>
@@ -187,7 +190,7 @@ $sum="select sum(plantes.prix) from panier,plantes where panier.idpalante=plante
       if($r){
         while ($row = mysqli_fetch_assoc($r)) {
           
-      
+       
      ?>
    <form action="client.php" method="post">
             <div class="col mb-5">

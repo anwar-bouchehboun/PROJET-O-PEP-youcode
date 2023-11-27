@@ -68,9 +68,9 @@ if($sumc){
     $sum_command=$rowsommcommnd[0];
 }
 ?>
-<div class="row container w-100">
+<div class="row container w-100 ">
    <h2 class="text-success">Statistique De Commande </h2>
-      <div class="col-xl-5 col-md-6 mb-4 ms-5">
+      <div class=" col-3 mb-4 ms-5">
             <div class="card border-primary shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -88,7 +88,7 @@ if($sumc){
         </div>
 
  
-        <div class="col-xl-5 col-md-6 mb-4 ms-5">
+        <div class="col-3  mb-4 ms-5">
             <div class="card border-success shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -104,7 +104,7 @@ if($sumc){
                 </div>
             </div>
         </div>
-        <div class="col-xl-5 col-md-6 mb-4 ms-5">
+        <div class="col-3  mb-4 ms-5">
             <div class="card border-success shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
