@@ -19,14 +19,15 @@ if (isset($_POST['add'])) {
     $req = mysqli_query($cnx, $insert);
     if ($req) {
         //  $update="update"
+        // echo $req;
         $delete = "DELETE FROM `panier` WHERE idpanier = $idpannier";
         $sup = mysqli_query($cnx, $delete);
-        echo $sup;
+        // // echo $sup;
 
         if ($sup) {
             header('location:client.php');
             exit;
-        } else echo 'hmid s9at';
+        } else echo 'eror sup';
     } else {
         echo 'error';
     }
