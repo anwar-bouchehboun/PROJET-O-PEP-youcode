@@ -38,6 +38,8 @@ $sum="select sum(plantes.prix) from panier,plantes where panier.idpalante=plante
      $s=mysqli_fetch_array($somme);
      $total=$s[0];
  }
+ //search 
+
 ?>
 
 
@@ -84,6 +86,7 @@ $sum="select sum(plantes.prix) from panier,plantes where panier.idpalante=plante
       
      ?>
                 <form class="d-flex gap-2" method="post" action="./client.php">
+
                     <span class="text-success fs-4"><?php echo $nom .' '.$prenom ?></span>
                     <button class="btn btn-outline-success" name="pagelogin">LogOut</button>
                     <button class="btn btn-outline-success" type="button" id="openCartButton">
@@ -166,28 +169,34 @@ $sum="select sum(plantes.prix) from panier,plantes where panier.idpalante=plante
             <option value="<?php echo $row[0] ?>"><?php echo $row[1] ?></option>
             <?php }?>
         </select>
-      
+        <input type="text" class="rounded-pill ps-2" placeholder="search"  name="keyword"  class=" row  text-white  mx-5 mt-1 ">
         <input type="submit" value="Choisir Categorie" name="Choisir" class="btn btn-primary my-2">
-        <input type="submit" value="Afficher Toutes les Plantes" name="AfficherToutes" class="btn btn-success my-2">
+        <button   class="btn btn-success my-2"><a href="./client.php"   class="btn btn-success ">Afficher Toutes les Plantes</a></button>
     </form>
 <div class="container px-4 px-lg-5 mt-5 ">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
    
     <?php
     $cat="";
-    $qery="SELECT * FROM plantes";
+    $query = "SELECT plantes.*  FROM plantes";
+  
     if(isset($_POST['Choisir'])){
-      $cat=$_POST['cat'];
+        if (isset($_POST['keyword']) && !empty($_POST['keyword'])) {
+            $keyword="";
+            $keyword=$_POST['keyword'];
+            // echo $keyword;
+            $query="SELECT plantes.*  FROM plantes where plantes.nomplante LIKE '%$keyword%'";
     
-      $qery="SELECT * FROM `plantes` WHERE idcat=$cat";
-    
+        }else if(isset($_POST['cat']) && !empty($_POST['cat'])) {
+            $cat=$_POST['cat'];
+            $query="SELECT  plantes.* FROM plantes where  idcat=$cat";
+        }
     }
-      else{
-        $qery="SELECT * FROM plantes";
-        
-      }
-      $r=mysqli_query($cnx,$qery);
-      if($r){
+    
+      
+
+    $r=mysqli_query($cnx,$query);
+    if($r){
         while ($row = mysqli_fetch_assoc($r)) {
           
        
@@ -202,6 +211,8 @@ $sum="select sum(plantes.prix) from panier,plantes where panier.idpalante=plante
                         <div class="text-center">
                             <!-- Product name-->
                             <h5 class="fw-bolder"><?php   echo $row['nomplante']; ?></h5>
+                            <!-- <h6 class="fw-bolder"><?php   echo $row['catégorie']; ?></h6> -->
+
                             <!-- Product price-->
                             $<?php   echo $row['prix']; ?>
                         </div>

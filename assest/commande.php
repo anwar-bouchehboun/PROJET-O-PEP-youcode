@@ -27,8 +27,8 @@ if ($result) {
       <?php  while ($row = mysqli_fetch_assoc($result)) {?>
       <tr class="table-info">
       <td><?= $row['Produit'] ?></td>
-      <td><?= $row['PRIX'] ?></td>
         <td><?= $row['DATE'] ?></td>
+        <td><?= $row['PRIX'] ?></td>
         <td><?= $row['NOM'] ?></td>
         <td><?= $row['Prenom'] ?></td>
         <td><?= $row['Role'] ?></td>
