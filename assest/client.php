@@ -48,7 +48,7 @@ $sum="select sum(plantes.prix) from panier,plantes where panier.idpalante=plante
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>CLIENT</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <style>
@@ -170,8 +170,8 @@ $sum="select sum(plantes.prix) from panier,plantes where panier.idpalante=plante
             <?php }?>
         </select>
         <input type="text" class="rounded-pill ps-2" placeholder="search"  name="keyword"  class=" row  text-white  mx-5 mt-1 ">
-        <input type="submit" value="Choisir Categorie" name="Choisir" class="btn btn-primary my-2">
-        <button   class="btn btn-success my-2"><a href="./client.php"   class="btn btn-success ">Afficher Toutes les Plantes</a></button>
+        <input type="submit" value="Choisir Categorie" name="Choisir" class="btn btn-primary py-2">
+        <button   class="btn btn-success my-2"><a href="./client.php"   class="btn btn-success py-1 ">Afficher Toutes les Plantes</a></button>
     </form>
 <div class="container px-4 px-lg-5 mt-5 ">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
