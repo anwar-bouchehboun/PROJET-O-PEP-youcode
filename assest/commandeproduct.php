@@ -25,8 +25,15 @@ if (isset($_POST['add'])) {
         // // echo $sup;
 
         if ($sup) {
-            header('location:client.php');
-            exit;
+            echo
+            " 
+            <script> 
+             alert('Message was sent successfully!');
+             document.location.href = 'client.php';
+            </script>
+            ";
+            // header('location:client.php');
+            // exit;
         } else echo 'eror sup';
     } else {
         echo 'error';
